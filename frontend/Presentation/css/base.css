@@ -376,11 +376,12 @@ a.demo--current {
 
 .slide__title {
 	position: relative;
-	font-size: var(--fontsize-stitle);
+	font-size: 50px;
 	margin: 0;
 	cursor: default;
 	line-height: 1;
 	color: #00C1DB;
+  margin-top: 100px;
 }
 
 .slide__desc {
