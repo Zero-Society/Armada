@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Armada Dropshipping</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="css/firstPage.css">
+  <link rel="stylesheet" href="css/OrderTracking.css">
+  <link rel="stylesheet" href="css/libs/wizard-progress.css">
+  <script src="/js/firstPage.js"></script>
+
+</head>
+
+<body class='body-products'>
+<!--===== LEFT ASIDE NAV =====-->
+<aside class="c-aside-nav">
+<!-- choose the active <a> element by adding .is-active -->
+    <img src="img/Logo/Armada_Logo_Symbol.png" class="absolute">
+  <a href="ProfileFirstPage.html" class="fa fa-home"></a>
+  <a href="" class="fa fa-shopping-basket"></a>
+  <a href="search.html" class="fa fa-search"></a>
+  <a href="" class="fa fa-sign-in"></a>
+</aside>
+<!--===== END OF LEFT ASIDE MENU =====-->
+
+
+<section class="products">
+
+
+<div class="parent-div">
+
+<div class='header'>
+  <h1>Start your Business with Armada!</h1>
+</div>
+
+
+<!--=====  =====-->
+
+
+<div>
+  <h2>Your active orders</h2>
+
+  <table class="table" id="orders-parent">
+    <thead>
+      <tr>
+        <th scope="col">Order id</th>
+        <th scope="col">Product id</th>
+        <th scope="col">Tracking</th>
+      </tr>
+    </thead>
+
+    <!-- iterate over all orders -->
+    <tr v-for="order in orders">
+      <td>{{ order.orderId }}</td>
+      <td>{{ order.productId }}</td>
+      <td>
+        <!-- tracking progress bar -->
+        <ol class="wizard-progress clearfix">
+            <div>
+            <!-- Iterate over a single order's checkpoints -->
+            <li  v-for="checkpoint in order.path"
+                v-bind:class="{activestep: checkpoint.verified}">
+              <span class="step-name">
+                {{ checkpoint.name }}
+              </span>
+              <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
+            </li>
+            </div>
+        </ol>
+        <!-- tracking progress bar -->
+      </td>
+    </tr>
+  </table>
+
+  </div>
+</section>
+
+<script src="js/libs/jquery.js"></script>
+<script src="js/libs/axios.min.js"></script>
+<script src="js/libs/vue.js"></script>
+<script src="js/Orders.js"></script>
+
+</body>
+</html>
