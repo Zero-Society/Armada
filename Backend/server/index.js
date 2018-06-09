@@ -35,13 +35,20 @@ app.get('/orders', function(req, res) {
   res.send(orders);
 });
 
+// Order a particular product.
+// Return orderId so QR code can be generated
 app.get('/order/:productId', function(req, res) {
   var _productId = req.params.productId;
+  var _orderId = utils.generateOrderId();
   res.send({
-    productId: _productId
+    productId: _productId,
+    orderId: _orderId
   });
 });
 
+// Scan order at checkpoint, used by android app
+// OrderID is derived from QR code.
+// CheckpointID is derived from scanning device.
 app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
   var _checkpointId = req.params.checkpointId;
   var _orderId = req.params.orderId;
