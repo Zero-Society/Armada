@@ -22,7 +22,17 @@ app.get('/orders', function(req, res) {
     path: utils.getPathForProduct(56, 2)
   };
 
-  res.send(fakeOrder);
+  var fakeOrder2 = {
+    orderId: 28,
+    productId: 5,
+    path: utils.getPathForProduct(28, 5)
+  };
+
+  var orders = [];
+  orders.push(fakeOrder);
+  orders.push(fakeOrder2);
+
+  res.send(orders);
 });
 
 app.get('/order/:productId', function(req, res) {
