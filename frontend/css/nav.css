@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:700,400,300italic,300,100);
+ @import url(https://necolas.github.io/normalize.css/4.1.1/normalize.css);
+.c-aside-nav {
+  z-index: 1000;
+  background-image: url(https://dl.dropboxusercontent.com/u/29650667/Front%20End/Olios-flexbox/LOGO.png);
+  background-size: 33%;
+  background-position: center 3vh;
+  background-repeat: no-repeat;
+  position: fixed;
+  height: 100%;
+  width: 12vh;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4vh 0px rgba(219, 219, 219, 0.5)
+}
+
+.c-aside-nav .fa {
+  display: block;
+  color: #d8d8d8;
+  font-size: 3.1vh;
+  text-align: center;
+  padding: 3vh;
+  transition: color 0.15s 0s ease-in-out, text-shadow 0.15s 0s ease-in-out
+}
+
+.c-aside-nav .fa:hover {
+  color: rgba(0, 35, 255, 0.76);
+  text-shadow: 0px 0px 0.8vh #0050ff
+}
+
+.c-aside-nav .is-active {
+  color: #00C1DB
+}
+
+.c-aside-nav .fa-home {
+  margin-top: 16vh
+}
+
+.c-aside-nav .fa-sign-in {
+  position: absolute;
+  bottom: 4vh;
+  display: block;
+  width: 100%;
+  height: 8vh;
+  text-align: center;
+  line-height: 8vh;
+  padding: 2vh 0;
+  -webkit-transform: rotateZ(90deg);
+  transform: rotateZ(90deg)
+}
