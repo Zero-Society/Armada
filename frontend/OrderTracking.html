@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Armada Dropshipping</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="css/firstPage.css">
+  <link rel="stylesheet" href="css/OrderTracking.css">
+  <link rel="stylesheet" href="css/libs/wizard-progress.css">
+  <script src="/js/firstPage.js"></script>
+
+</head>
+
+<body class='body-products'>
+<!--===== LEFT ASIDE NAV =====-->
+<aside class="c-aside-nav">
+<!-- choose the active <a> element by adding .is-active -->
+    <img src="img/Logo/Armada_Logo_Symbol.png" class="absolute">
+  <a href="ProfileFirstPage.html" class="fa fa-home"></a>
+  <a href="" class="fa fa-shopping-basket"></a>
+  <a href="search.html" class="fa fa-search"></a>
+  <a href="" class="fa fa-sign-in"></a>
+</aside>
+<!--===== END OF LEFT ASIDE MENU =====-->
+
+
+<section class="products">
+
+
+<div class="parent-div">
+
+<div class='header'>
+  <h1>Start your Business with Armada!</h1>
+
+<!--===== <a class="breadcrumbs breadcrumbs--living-room" href="living-room.html">LIVING ROOM</a> =====-->
+
+</div>
+<!--=====  =====-->
+<div>
+
+  <h2>Your active orders</h2>
+
+
+
+
+<!--
+              <table id="orders-parent">
+                <tr><td>Order id</td><td>Product id</td><td>Checkpoints</td></tr>
+                     
+                <tr v-for="order in orders">
+
+                  <td>
+
+                      {{ order.id }}
+                  </td>
+                  <td>
+                      {{ order.itemId }}
+                  </td>
+                  <td>
+                      {{order.checkpoints}}
+                  </td>
+
+                  <td>
+                      {{order.path}}
+                  </td>
+                </tr>
+              </table>
+-->
+
+
+
+  <table class="table" id="orders-parent">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+      </tr>
+    </thead>
+    <tr v-for="order in orders">
+      <td>{{ order.id }}</td>
+      <td>
+
+
+
+
+
+        <!-- tracking progress bar -->
+
+
+<ol class="wizard-progress clearfix">
+    <div>
+    <li  v-for="checkpoint in order.path"
+        v-bind:class="{activestep: checkpoint.verified}">
+      <span class="step-name">
+        {{ checkpoint.name }}
+      </span>
+      <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
+    </li>
+    </div>
+    <!--<li>
+        <span class="step-name">
+            Foo
+        </span>
+        <span class="visuallyhidden">Step </span><span class="step-num">1</span>
+    </li>
+    <li class="active-step">
+        <span class="step-name">Bar</span>
+        <span class="visuallyhidden">Step </span><span class="step-num">2</span>
+    </li>
+    <li>
+        <span class="step-name">Baz</span>
+        <span class="visuallyhidden">Step </span><span class="step-num">3</span>
+    </li>
+    <li>
+        <span class="step-name">Quux</span>
+        <span class="visuallyhidden">Step </span><span class="step-num">4</span>
+    </li>-->
+</ol>
+
+
+
+        <!-- tracking progress bar -->
+
+      </td>
+      <td></td>
+    </tr>
+  </table>
+
+  </div>
+</section>
+
+<script src="js/libs/jquery.js"></script>
+<script src="js/libs/axios.min.js"></script>
+<script src="js/libs/vue.js"></script>
+<script src="js/Orders.js"></script>
+
+</body>
+</html>
