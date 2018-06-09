@@ -20,16 +20,20 @@ class example : public eosio::contract {
 
      /// @abi action
      void createorder(uint64_t productId) {
-     	print ("createorder " , productId);
+
+     	auto pk = _orders.available_primary_key();
+
+     	print ("createorder " , productId, " next primary key: ", pk);
 
 
      	_orders.emplace(_self, [&]( auto& s) {
+     		s.id = pk;
      		s.productId = productId;
      	});
      }
 
      ///
-  private:
+  //#private:
 
   	// @abi struct
   	struct Order {
