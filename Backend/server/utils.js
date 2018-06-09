@@ -10,4 +10,16 @@ var getPathForProduct = function(productId, orderId) {
   return path;
 }
 
+
+
+/*
+Generate order id. should be unique
+*/
+var lastOrderId = 12;
+var generateOrderId = function() {
+  lastOrderId = lastOrderId + 1;
+  return lastOrderId;
+}
+
 module.exports.getPathForProduct = getPathForProduct;
+module.exports.generateOrderId = generateOrderId;
