@@ -1,0 +1,1 @@
+docker exec eosio ls /checkpoint_list/
