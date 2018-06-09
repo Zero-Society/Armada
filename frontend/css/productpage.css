@@ -1420,6 +1420,3 @@ label[class^='bg-tabs__tab-'] {
 }
 
 .icon-plus:before { content: '\e62f'; }
-
-.borderimg {
-    border-image: url(1.png) 30 round;
