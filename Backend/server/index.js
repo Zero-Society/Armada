@@ -35,7 +35,8 @@ app.get('/orders', function(req, res) {
   res.send(orders);
 });
 
-// Order a particular product
+// Order a particular product.
+// Return orderId so QR code can be generated
 app.get('/order/:productId', function(req, res) {
   var _productId = req.params.productId;
   var _orderId = utils.generateOrderId();
