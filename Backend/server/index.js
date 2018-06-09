@@ -4,6 +4,13 @@ var app = express();
 var products = require('./products')
 var orders = {};
 
+// Cross-site requests
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/products', function(req, res) {
   res.send(products);
 });
