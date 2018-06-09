@@ -639,3 +639,25 @@ a.demo--current {
 	transform: scale3d(1, 1, 1);
 	opacity: 1;
 }
+
+/* Slideshow Content Formatting */
+
+.slide_heading_center {
+
+}
+
+.slide_heading_subtitle {
+
+}
+
+.slide_center_content {
+
+}
+
+.slide_bluetext_highlight {
+
+}
+
+.slide_largebluetext {
+    
+}
