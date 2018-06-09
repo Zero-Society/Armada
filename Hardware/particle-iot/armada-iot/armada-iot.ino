@@ -38,6 +38,12 @@ void loop()
   {
     // turn the LED On
     digitalWrite( ledPin, HIGH);
+
+    bool success;
+    success = Particle.publish("product received");
+     if (!success) {
+        // get here if event publish did not work
+}
   }else{
     // otherwise
     // turn the LED Off
