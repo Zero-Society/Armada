@@ -38,8 +38,10 @@ app.get('/orders', function(req, res) {
 // Order a particular product
 app.get('/order/:productId', function(req, res) {
   var _productId = req.params.productId;
+  var _orderId = utils.generateOrderId();
   res.send({
-    productId: _productId
+    productId: _productId,
+    orderId: _orderId
   });
 });
 
