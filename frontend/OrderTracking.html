@@ -35,99 +35,44 @@
 
 <div class='header'>
   <h1>Start your Business with Armada!</h1>
-
-<!--===== <a class="breadcrumbs breadcrumbs--living-room" href="living-room.html">LIVING ROOM</a> =====-->
-
 </div>
+
+
 <!--=====  =====-->
+
+
 <div>
-
   <h2>Your active orders</h2>
-
-
-
-
-<!--
-              <table id="orders-parent">
-                <tr><td>Order id</td><td>Product id</td><td>Checkpoints</td></tr>
-                     
-                <tr v-for="order in orders">
-
-                  <td>
-
-                      {{ order.id }}
-                  </td>
-                  <td>
-                      {{ order.itemId }}
-                  </td>
-                  <td>
-                      {{order.checkpoints}}
-                  </td>
-
-                  <td>
-                      {{order.path}}
-                  </td>
-                </tr>
-              </table>
--->
-
-
 
   <table class="table" id="orders-parent">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
+        <th scope="col">Order id</th>
+        <th scope="col">Product id</th>
+        <th scope="col">Tracking</th>
       </tr>
     </thead>
+
+    <!-- iterate over all orders -->
     <tr v-for="order in orders">
-      <td>{{ order.id }}</td>
+      <td>{{ order.orderId }}</td>
+      <td>{{ order.productId }}</td>
       <td>
-
-
-
-
-
         <!-- tracking progress bar -->
-
-
-<ol class="wizard-progress clearfix">
-    <div>
-    <li  v-for="checkpoint in order.path"
-        v-bind:class="{activestep: checkpoint.verified}">
-      <span class="step-name">
-        {{ checkpoint.name }}
-      </span>
-      <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
-    </li>
-    </div>
-    <!--<li>
-        <span class="step-name">
-            Foo
-        </span>
-        <span class="visuallyhidden">Step </span><span class="step-num">1</span>
-    </li>
-    <li class="active-step">
-        <span class="step-name">Bar</span>
-        <span class="visuallyhidden">Step </span><span class="step-num">2</span>
-    </li>
-    <li>
-        <span class="step-name">Baz</span>
-        <span class="visuallyhidden">Step </span><span class="step-num">3</span>
-    </li>
-    <li>
-        <span class="step-name">Quux</span>
-        <span class="visuallyhidden">Step </span><span class="step-num">4</span>
-    </li>-->
-</ol>
-
-
-
+        <ol class="wizard-progress clearfix">
+            <div>
+            <!-- Iterate over a single order's checkpoints -->
+            <li  v-for="checkpoint in order.path"
+                v-bind:class="{activestep: checkpoint.verified}">
+              <span class="step-name">
+                {{ checkpoint.name }}
+              </span>
+              <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
+            </li>
+            </div>
+        </ol>
         <!-- tracking progress bar -->
-
       </td>
-      <td></td>
     </tr>
   </table>
 
