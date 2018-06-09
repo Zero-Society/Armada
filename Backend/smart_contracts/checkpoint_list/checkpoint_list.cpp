@@ -8,9 +8,9 @@ class example : public eosio::contract {
 
      example(account_name s):
      	contract(s),
-     	_orders(s, s)
+     	tableorders(s, s)
  	{
- 		print("constructor");
+ 		print("constructor5555555");
  	}
 
      /// @abi action
@@ -20,18 +20,22 @@ class example : public eosio::contract {
 
      /// @abi action
      void createorder(uint64_t productId) {
-     	print ("createorder " , productId);
+
+     	auto pk = tableorders.available_primary_key();
+
+     	print ("createorder " , productId, " next primary key: ", pk);
 
 
-     	_orders.emplace(_self, [&]( auto& s) {
+     	tableorders.emplace(_self, [&]( auto& s) {
+     		s.id = pk;
      		s.productId = productId;
      	});
      }
 
      ///
-  private:
+  //#private:
 
-  	// @abi struct
+  	/// @abi table orders
   	struct Order {
   		uint64_t id;
   		uint64_t productId;
@@ -40,13 +44,31 @@ class example : public eosio::contract {
   			return id;
   		}
 
+  		uint64_t by_age()const { return id; }
+
   		EOSLIB_SERIALIZE(Order, (id)(productId))
   	};
 
-  	// @abi table
-  	typedef eosio::multi_index<N(orders), Order> orders;
-  	orders _orders;
-  	//std::vector<account_name, uint32_t> orders;
+
+
+
+
+
+// We setup the table usin multi_index container:
+    /// @######abi table
+    //typedef eosio::multi_index< N(people), person, indexed_by<N(byage), const_mem_fun<person, uint64_t, &person::by_age>>>  people;
+    
+    // Creating the instance of the `people` type
+    //people _people;
+
+
+
+
+  	/// @abi table
+  	typedef eosio::multi_index<N(orders), Order, indexed_by<N(byage), const_mem_fun<Order, uint64_t, &Order::by_age>>> orders;
+
+  	orders tableorders;
+  	
 };
 
 EOSIO_ABI( example, (hi)(createorder) )

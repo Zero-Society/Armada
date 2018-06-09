@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+var EOS = require('eosjs');
+var eos = EOS({
+    httpEndpoint: 'http://localhost:8888'});
 
 var utils = require('./utils');
 var products = require('./products');
@@ -14,6 +17,21 @@ app.use(function(req, res, next) {
 
 // Get a list of all orders
 app.get('/orders', function(req, res) {
+
+  var rows = eos.getTableRows();
+  var rowss = eos.getTableRows({
+    json: true,
+    code: "myaccount",
+    scope: "myaccount",
+    table: "orders"
+  }).then(function(res) {
+    console.log(JSON.stringify(res));
+  });
+  console.log(JSON.stringify(rowss));
+  res.send(rowss);
+
+  //res.send(eos.getBlock(2));
+  /*
 
   // Return a fake order for testing
   var fakeOrder = {
@@ -32,7 +50,7 @@ app.get('/orders', function(req, res) {
   orders.push(fakeOrder);
   orders.push(fakeOrder2);
 
-  res.send(orders);
+  res.send(orders);*/
 });
 
 // Order a particular product.
