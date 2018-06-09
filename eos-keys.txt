@@ -1,0 +1,61 @@
+wallet password: PW5JhKS41haRMeJAc5oS4TKb9eHcxEBgjDNNUD7BktL5jWXq64q3n
+
+
+
+Private key: 5KAWdhZK14CbvuXUHzkfRHETdXarLJEromvmvYywp46SP6wJVcJ
+Public key: EOS7Rh3pJk1tTz1vY1siMyXp3s5642gyukPKK8x4ELvakUVf3MhRk
+
+https://steemit.com/devs/@eos-asia/eos-smart-contracts-part-1-getting-started-ping-equivalent-in-eos
+
+
+
+#2
+Private key: 5JeLBVDpHu5FLfEMi8beHshKeKyusxyiLR3YkoxnrAz3QbuJaW3
+Public key: EOS6vQkJKKkzcUafhzG7DCoLVSBNLvv4DvbSwM7xLBrUo9i5CAmJK
+
+
+
+
+
+#3
+Private key: 5K2VNoqA9ZRit6DwFLdxJ9HGotYNCpcjWxExSSt4GYmHFSmU5sS
+Public key: EOS77BM1GCVgLNPd7iQHh3teE4rSpz1F1uT2F7nRFhm3hRBE8bSAL
+
+
+accoutn: pingaccount
+owner key: EOS77
+active key: EOS7R
+
+----------------------------------------
+
+ACCOUNT CREATION SCRIPT:
+
+cleos create account eosio testacc pubkey1 pubkey2
+cleos get account testacc -j
+'myaccount'
+
+
+
+WALLET CREATE
+
+
+eos/contracts/ping  master ✗                                                           13d ◒  ⍉
+▶ docker exec eosio cleos wallet create -n mywallet
+Creating wallet: mywallet
+Save password to use in the future to unlock this wallet.
+Without password imported keys will not be retrievable.
+"PW5HvLzx5gXH5umyd6rvmqn44qyufsD85X2Dyai3tZfmEn5LbJyiK"
+
+
+
+
+eos/contracts/ping  master ✗                                                            13d ◒  
+▶ docker exec eosio cleos create key
+Private key: 5JLMTGoBAyocsATb4Eo6mbGTJagYtpfTvixrL8SwQNYKY6qAtzq
+Public key: EOS7EuQtc4Q3N1NVR9JxhkXdQn9hNZ6FqSzTcxTjvTGzeU4EhZqBR
+
+eos/contracts/ping  master ✗                                                            13d ◒  
+▶ docker exec eosio cleos create key
+Private key: 5HrzofhnbuNg8oyXgazXLYR2mWqDTuQmq7bBks6Vz8bzq6eLbP4
+Public key: EOS5PGNHSDV8KnHNYSvmCnjvt7vLbcWHimvBwWzGLpVHaynmD8Duw
+
