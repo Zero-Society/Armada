@@ -2,12 +2,18 @@
 
 // choose, pay, wrap, ship
 
-$('.choose')
-$('.pay')
-$('.wrap').onclick(function(){
+$('.choose').click(function(){
+  choose(0);
+});
+$('.pay').click(function(){
+  choose(1);
+});
+$('.wrap').click(function(){
+  choose(2);
+});
+$('.ship').click(function(){
   choose(3);
 });
-$('.ship')
 
 
 var choose = function(page) {
