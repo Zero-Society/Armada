@@ -5,7 +5,7 @@ var qr = new QRious({
         value: ''
       });
 
-qr.value = 13;
+qr.value = "13";
 
 $("#orderProduct").click(function() {
   var _productId = $("#productId").val();
