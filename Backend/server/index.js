@@ -60,6 +60,12 @@ app.get('/order/:productId', function(req, res) {
   res.send({orderId: _orderId});
 });
 
+
+var number = 0;
+app.get('/number', function(req, res) {
+  res.send({"number": number});
+});
+
 // Scan order at checkpoint, used by android app
 // OrderID is derived from QR code.
 // CheckpointID is derived from scanning device.
@@ -67,6 +73,12 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
   var _order = req.params.orderId;
   var checkpoint = req.params.checkpointId;
   var found = false;
+
+  number = checkpointId;
+  console.log("new number: " + number);
+
+  return;
+
 
   console.log("order: " + _order + " checkpoint:" + checkpoint);
   console.log(JSON.stringify(orders))

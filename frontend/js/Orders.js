@@ -95,23 +95,21 @@ var vueProducts = new Vue({
     orders: []
   }
 })
-
+/*
 axios.get("http://206.189.90.181:3000/orders").then(function (result) {
   console.log(JSON.stringify(result.data));
 
   vueProducts.orders = result.data;
 });
-
+*/
 var getLatestData = function(next) {
-  axios.get("http://206.189.90.181:3000/orders").then(function (result) {
+  axios.get("http://206.189.90.181:3000/number").then(function (result) {
 
-    if (result == undefined || result.data == undefined) {
-      return;
-    }
-
+    console.log("/number result: " + JSON.stringify(result));
+   
 
 
-    var newPage = result.data[result.data.length - 1].lastState;
+    /*var newPage = result.data[result.data.length - 1].lastState;
 
     console.log("CURRENTPAGE " + currentPage + ", NEWPAGE " + newPage);
 
@@ -135,4 +133,4 @@ var getLatestData = function(next) {
 
 setInterval(function() {
   getLatestData();
-}, 2000);
+}, 1000);
