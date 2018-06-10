@@ -105,11 +105,18 @@ axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 var getLatestData = function(next) {
   axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 
-    var newPage = result.data[0].lastState;
+    if (result == undefined || result.data == undefined) {
+      return;
+    }
+
+
+
+    var newPage = result.data[result.data.length - 1].lastState;
 
     console.log("CURRENTPAGE " + currentPage + ", NEWPAGE " + newPage);
 
     if (currentPage != newPage) {
+      console.log("RUN ANIMATION ");
       //alert("new page: " + newPage);
       currentPage = newPage;
       choose(newPage);
