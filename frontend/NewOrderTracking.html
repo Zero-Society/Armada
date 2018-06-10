@@ -91,42 +91,6 @@
 <!--=====  =====-->
 
 
-<div>
-  <h2>Your active orders</h2>
-
-  <table class="table" id="orders-parent">
-    <thead>
-      <tr>
-        <th scope="col">Order id</th>
-        <th scope="col">Product id</th>
-        <th scope="col">Tracking</th>
-      </tr>
-    </thead>
-
-    <!-- iterate over all orders -->
-    <tr v-for="order in orders">
-      <td>{{ order.orderId }}</td>
-      <td>{{ order.productId }}</td>
-      <td>
-        <!-- tracking progress bar -->
-        <ol class="wizard-progress clearfix">
-            <div>
-            <!-- Iterate over a single order's checkpoints -->
-            <li  v-for="checkpoint in order.path"
-                v-bind:class="{activestep: checkpoint.verified}">
-              <span class="step-name">
-                {{ checkpoint.name }}
-              </span>
-              <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
-            </li>
-            </div>
-        </ol>
-        <!-- tracking progress bar -->
-      </td>
-    </tr>
-  </table>
-
-  </div>
 
   <div id="info-wrapper">
   <div id="left-side">

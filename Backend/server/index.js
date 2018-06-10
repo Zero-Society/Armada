@@ -53,7 +53,8 @@ app.get('/order/:productId', function(req, res) {
   orders.push({
     orderId: _orderId,
     productId: _productId,
-    path: _path
+    path: _path,
+    lastState: 0
   });
 
   res.send({orderId: _orderId});
@@ -78,6 +79,7 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
       
       // Also scan through the product path, and mark checkpoint as verified
       array[index].path = markCheckpoint(array[index].path, checkpoint);
+      array[index].lastState = checkpoint;
     }
   });
 
