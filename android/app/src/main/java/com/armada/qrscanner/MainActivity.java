@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String TAG = "ssa";
-    private static final String DOMAIN = "http://128.199.167.246:3000";
+    private static final String DOMAIN = "http://159.65.134.252:3000";
 
     private ZXingScannerView scannerView;
     private Spinner spinner;

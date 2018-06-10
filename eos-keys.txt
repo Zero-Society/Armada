@@ -1,3 +1,9 @@
+
+Droplet Name: marma
+IP Address: 128.199.167.246
+
+
+
 mywallet
 PW5HwxJDTg3ZFdsSpXd1YpBuLvCe5BxgjRhH2w8LxZixrmifTZzZM
 
