@@ -1,5 +1,75 @@
 
 
+
+var choose = function(page) {
+  if (page == 0) {
+    $(".choose").addClass("active");
+    $(".choose > .icon").addClass("active");
+    $(".pay").removeClass("active");
+    $(".wrap").removeClass("active");
+    $(".ship").removeClass("active");
+    $(".pay > .icon").removeClass("active");
+    $(".wrap > .icon").removeClass("active");
+    $(".ship > .icon").removeClass("active");
+    $("#line").addClass("one");
+    $("#line").removeClass("two");
+    $("#line").removeClass("three");
+    $("#line").removeClass("four");
+  } else if (page == 1) {
+     $(".pay").addClass("active");
+    $(".pay > .icon").addClass("active");
+    $(".choose").removeClass("active");
+    $(".wrap").removeClass("active");
+    $(".ship").removeClass("active");
+    $(".choose > .icon").removeClass("active");
+    $(".wrap > .icon").removeClass("active");
+    $(".ship > .icon").removeClass("active");
+    $("#line").addClass("two");
+    $("#line").removeClass("one");
+    $("#line").removeClass("three");
+    $("#line").removeClass("four");
+  } else if (page == 2) {
+     $(".wrap").addClass("active");
+    $(".wrap > .icon").addClass("active");
+    $(".pay").removeClass("active");
+    $(".choose").removeClass("active");
+    $(".ship").removeClass("active");
+    $(".pay > .icon").removeClass("active");
+    $(".choose > .icon").removeClass("active");
+    $(".ship > .icon").removeClass("active");
+    $("#line").addClass("three");
+    $("#line").removeClass("two");
+    $("#line").removeClass("one");
+    $("#line").removeClass("four");
+  } else if (page == 3) {
+     $(".ship").addClass("active");
+    $(".ship > .icon").addClass("active");
+    $(".pay").removeClass("active");
+    $(".wrap").removeClass("active");
+    $(".choose").removeClass("active");
+    $(".pay > .icon").removeClass("active");
+    $(".wrap > .icon").removeClass("active");
+    $(".choose > .icon").removeClass("active");
+    $("#line").addClass("four");
+    $("#line").removeClass("two");
+    $("#line").removeClass("three");
+    $("#line").removeClass("one");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //var oldData = {};
 
 var currentPage = 0;
@@ -27,6 +97,7 @@ var getLatestData = function(next) {
     if (currentPage != newPage) {
       alert("new page: " + newPage);
       currentPage = newPage;
+      choose(newPage).
     } 
 
     /*var newData = result.data;
