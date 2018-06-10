@@ -3,6 +3,12 @@ var app = express();
 var EOS = require('eosjs');
 var eos = EOS();
 
+//satori stuff
+var RTM = require('satori');
+var endpoint = 'endpoint';
+var appkey = 'appkey';
+
+var client = new RTM(endpoint, appkey);
 var utils = require('./utils');
 var products = require('./products');
 var orders = {};
@@ -73,4 +79,44 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
   });
 });
 
+//receive data from TP link IOT device.
+app.get('/receive', function(req, res)){ 
+  client.on('enter-connected', function () {
+    console.log('Connected to Stream');
+  });
+
+  client.on('error', function (error) {
+    console.log('Failed to connect', error);
+  });
+
+  var channel = client.subscribe('TP Channel', RTM.SubscriptionMode.SIMPLE);
+
+  /* set callback for state transition */
+  channel.on('enter-subscribed', function () {
+    console.log('Subscribed to: ' + channel.subscriptionId);
+  });
+
+  channel.on('leave-subscribed', function () {
+    console.log('Unsubscribed from: ' + channel.subscriptionId);
+  });
+
+  /* set callback for PDU with specific action */
+  channel.on('rtm/subscription/data', function (pdu) {
+    pdu.body.messages.forEach(function (msg) {
+      console.log('Received Signal from' + msg.who + ' : ' + JSON.stringify(msg));
+    });
+  });
+
+  channel.on('rtm/subscribe/error', function (pdu) {
+    console.log('Failed to subscribe. RTM replied with the error ' +
+        pdu.body.error + ': ' + pdu.body.reason);
+  });
+
+  channel.on('rtm/subscription/error', function (pdu) {
+    console.log('Subscription failed. RTM sent the unsolicited error ' +
+        pdu.body.error + ': ' + pdu.body.reason);
+  });
+}
+
+client.start(); // satori stream start
 app.listen(3000, () => console.log('listen port 3000'));

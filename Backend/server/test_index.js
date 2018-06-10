@@ -1,4 +1,4 @@
-Eos = require('eosjs') // Eos = require('./src')
+Eos = require('./Backend/eosjs') // Eos = require('./src')
 
 var express = require('express');
 var app = express();
