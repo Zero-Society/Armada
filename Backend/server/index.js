@@ -78,28 +78,6 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
   console.log("new number: " + number);
 
   return;
-
-
-  console.log("order: " + _order + " checkpoint:" + checkpoint);
-  console.log(JSON.stringify(orders))
-
-  // Identify the matching order id if it exists, and add the checkpoint
-  orders.forEach(function(part, index, array) {
-    if (array[index].orderId == _order) {
-      found = true;
-      console.log("Found product: " + array[index]);
-      
-      // Also scan through the product path, and mark checkpoint as verified
-      array[index].path = markCheckpoint(array[index].path, checkpoint);
-      array[index].lastState = checkpoint;
-    }
-  });
-
-  if (!found) {
-    console.log("Order not found!!!");
-  }
-
-  res.send(orders)
 });
 
 //receive data from TP link IOT device.
