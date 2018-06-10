@@ -2,6 +2,7 @@
 
 
 // The purpose of this contract is to create tokens for the supply chain and use it to review the actions of the players etc
+// based off of EOS social contract
 
 struct review_action {
 	account_name voter;
