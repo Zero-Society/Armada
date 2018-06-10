@@ -1,6 +1,8 @@
 
 
-var oldData = {};
+//var oldData = {};
+
+var currentPage = 0;
 
 var vueProducts = new Vue({
   el: '#orders-parent',
@@ -17,17 +19,24 @@ axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 
 var getLatestData = function(next) {
   axios.get("http://206.189.90.181:3000/orders").then(function (result) {
-    var newData = result.data;
+
+    var newPage = result.data[0].lastState;
+    if (currentPage != newPage) {
+      alert("new page: " + newPage);
+      currentPage = newPage;
+    } 
+
+    /*var newData = result.data;
     if (!_.isMatch(oldData, newData)) {
       vueProducts.orders = newData;
       oldData = newData;
 
       var newPage = result.data[0].lastState;
       alert("new page: " + newPage);
-    }
+    }*/
   });
 }
 
 setInterval(function() {
   getLatestData();
-}, 500);
+}, 2000);
