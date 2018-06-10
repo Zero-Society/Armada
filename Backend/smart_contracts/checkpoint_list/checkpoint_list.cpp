@@ -1,5 +1,7 @@
 #include <eosiolib/eosio.hpp>
 #include <eosiolib/print.hpp>
+#include <unordered_map>
+#include <map>
 using namespace eosio;
 
 class example : public eosio::contract {
@@ -29,24 +31,47 @@ class example : public eosio::contract {
      	tableorders.emplace(_self, [&]( auto& s) {
      		s.id = pk;
      		s.productId = productId;
+     		s.lastCheckpointId = 0;
      	});
      }
 
-     ///
-  //#private:
+     /// @abi action
+     void checkpoint(uint64_t orderId, uint64_t checkpointId) {
+     	auto existing = tableorders.find(orderId);
+     	if (existing == tableorders.end()) {
+     		// not found
+     		return;
+     	}
+
+     	//update last checkpoint
+     	tableorders.modify(existing, 0, [&](auto& a) {
+     		a.lastCheckpointId = checkpointId;
+     	}) ;
+     }
+
+     /// @abi action
+     void clear() {
+     	print ("clear");
+     	//tableorders.get<by_age>().clear();
+     	//MapTable().swap(tableorders);
+     	//tableorders.get().clear();
+
+     }
 
   	/// @abi table orders
   	struct Order {
   		uint64_t id;
   		uint64_t productId;
+  		uint64_t lastCheckpointId;
   		
+
   		uint64_t primary_key() const {
   			return id;
   		}
 
   		uint64_t by_age()const { return id; }
 
-  		EOSLIB_SERIALIZE(Order, (id)(productId))
+  		EOSLIB_SERIALIZE(Order, (id)(productId)(lastCheckpointId))
   	};
 
 

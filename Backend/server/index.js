@@ -1,18 +1,18 @@
 var express = require('express');
 var app = express();
-var EOS = require('eosjs');
-var eos = EOS({
-    httpEndpoint: 'http://localhost:8888'});
+//var EOS = require('eosjs');
+//var eos = EOS({
+ //   httpEndpoint: 'http://localhost:8888'});
 
 //satori stuff
-var RTM = require('satori');
+// var RTM = require('satori');
 var endpoint = 'endpoint';
 var appkey = 'appkey';
 
-var client = new RTM(endpoint, appkey);
+//var client = new RTM(endpoint, appkey);
 var utils = require('./utils');
 var products = require('./products');
-var orders = {};
+var orders = [];
 
 // Cross-site requests to allow communication w frontend
 app.use(function(req, res, next) {
@@ -21,42 +21,25 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+/*
+Go through an order path, and if the checkpointId is found, set verified true. Return new path.
+*/
+var markCheckpoint = function(path, checkpointId) {
+  console.log("In path " + JSON.stringify(path) + " mark " + checkpointId);
+  path.forEach(function(part, index, array) {
+    // Check the checkpointId
+    if (array[index].id == checkpointId) {
+      array[index].verified = true;
+    }
+  });
+  console.log("return " + JSON.stringify(path));
+  return path;
+}
+
 // Get a list of all orders
 app.get('/orders', function(req, res) {
-
-  var rows = eos.getTableRows();
-  var rowss = eos.getTableRows({
-    json: true,
-    code: "myaccount",
-    scope: "myaccount",
-    table: "orders"
-  }).then(function(res) {
-    console.log(JSON.stringify(res));
-  });
-  console.log(JSON.stringify(rowss));
-  res.send(rowss);
-
-  //res.send(eos.getBlock(2));
-  /*
-
-  // Return a fake order for testing
-  var fakeOrder = {
-    orderId: 56,
-    productId: 2,
-    path: utils.getPathForProduct(56, 2)
-  };
-
-  var fakeOrder2 = {
-    orderId: 28,
-    productId: 5,
-    path: utils.getPathForProduct(28, 5)
-  };
-
-  var orders = [];
-  orders.push(fakeOrder);
-  orders.push(fakeOrder2);
-
-  res.send(orders);*/
+  res.send(orders);
 });
 
 // Order a particular product.
@@ -64,26 +47,49 @@ app.get('/orders', function(req, res) {
 app.get('/order/:productId', function(req, res) {
   var _productId = req.params.productId;
   var _orderId = utils.generateOrderId();
-  res.send({
+  var _path = utils.getPathForProduct(_productId, _orderId)
+  
+
+  orders.push({
+    orderId: _orderId,
     productId: _productId,
-    orderId: _orderId
+    path: _path
   });
+
+  res.send({orderId: _orderId});
 });
 
 // Scan order at checkpoint, used by android app
 // OrderID is derived from QR code.
 // CheckpointID is derived from scanning device.
 app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
-  var _checkpointId = req.params.checkpointId;
-  var _orderId = req.params.orderId;
-  res.send({
-    checkpointId: _checkpointId,
-    orderId: _orderId
+  var _order = req.params.orderId;
+  var checkpoint = req.params.checkpointId;
+  var found = false;
+
+  console.log("order: " + _order + " checkpoint:" + checkpoint);
+  console.log(JSON.stringify(orders))
+
+  // Identify the matching order id if it exists, and add the checkpoint
+  orders.forEach(function(part, index, array) {
+    if (array[index].orderId == _order) {
+      found = true;
+      console.log("Found product: " + array[index]);
+      
+      // Also scan through the product path, and mark checkpoint as verified
+      array[index].path = markCheckpoint(array[index].path, checkpoint);
+    }
   });
+
+  if (!found) {
+    console.log("Order not found!!!");
+  }
+
+  res.send(orders)
 });
 
 //receive data from TP link IOT device.
-app.get('/receive', function(req, res)){ 
+/*app.get('/receive', function(req, res)){ 
   client.on('enter-connected', function () {
     console.log('Connected to Stream');
   });
@@ -94,7 +100,7 @@ app.get('/receive', function(req, res)){
 
   var channel = client.subscribe('TP Channel', RTM.SubscriptionMode.SIMPLE);
 
-  /* set callback for state transition */
+
   channel.on('enter-subscribed', function () {
     console.log('Subscribed to: ' + channel.subscriptionId);
   });
@@ -103,7 +109,7 @@ app.get('/receive', function(req, res)){
     console.log('Unsubscribed from: ' + channel.subscriptionId);
   });
 
-  /* set callback for PDU with specific action */
+
   channel.on('rtm/subscription/data', function (pdu) {
     pdu.body.messages.forEach(function (msg) {
       console.log('Received Signal from' + msg.who + ' : ' + JSON.stringify(msg));
@@ -120,6 +126,6 @@ app.get('/receive', function(req, res)){
         pdu.body.error + ': ' + pdu.body.reason);
   });
 }
-
-client.start(); // satori stream start
+*/
+// client.start(); // satori stream start
 app.listen(3000, () => console.log('listen port 3000'));
