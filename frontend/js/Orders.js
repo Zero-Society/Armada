@@ -7,7 +7,7 @@ var vueProducts = new Vue({
   }
 })
 
-axios.get("http://localhost:3000/orders").then(function (result) {
+axios.get("http://206.189.90.181:3000/orders").then(function (result) {
   console.log(JSON.stringify(result.data));
 
   vueProducts.orders = result.data;
