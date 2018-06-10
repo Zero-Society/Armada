@@ -1,5 +1,14 @@
 
 
+// choose, pay, wrap, ship
+
+$('.choose')
+$('.pay')
+$('.wrap').onclick(function(){
+  choose(3);
+});
+$('.ship')
+
 
 var choose = function(page) {
   if (page == 0) {
@@ -97,7 +106,7 @@ var getLatestData = function(next) {
     if (currentPage != newPage) {
       alert("new page: " + newPage);
       currentPage = newPage;
-      choose(newPage).
+      choose(newPage);
     } 
 
     /*var newData = result.data;
