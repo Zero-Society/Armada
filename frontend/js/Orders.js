@@ -16,7 +16,7 @@ axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 });
 
 var getLatestData = function(next) {
-  axios.get("http://206.189.90.181:3000/orders").then(function (data) {
+  axios.get("http://206.189.90.181:3000/orders").then(function (result) {
     var newData = result.data;
     if (!_.isMatch(oldData, newData)) {
       vueProducts.orders = newData;
