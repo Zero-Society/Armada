@@ -110,7 +110,7 @@ var getLatestData = function(next) {
     console.log("CURRENTPAGE " + currentPage + ", NEWPAGE " + newPage);
 
     if (currentPage != newPage) {
-      alert("new page: " + newPage);
+      //alert("new page: " + newPage);
       currentPage = newPage;
       choose(newPage);
     } 
