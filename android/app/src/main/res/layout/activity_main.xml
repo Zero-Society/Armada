@@ -9,8 +9,9 @@
 
     <me.dm7.barcodescanner.zxing.ZXingScannerView
         android:id="@+id/scanner"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"></me.dm7.barcodescanner.zxing.ZXingScannerView>
+
+        android:layout_width="150dp"
+        android:layout_height="150dp"></me.dm7.barcodescanner.zxing.ZXingScannerView>
 
     <Spinner
         android:id="@+id/spinner"
