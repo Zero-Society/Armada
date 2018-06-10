@@ -63,26 +63,28 @@ class contract : public armada_base{
                         const identity_name asset_id,
                         const vector<checkvalue>& checks){
             require_auth( oracle);
-            if (owner != oracle)
+            if (owner != oracle){
                require_auth(oracle);
+            }
 
             assets_table t(_self, _self);
             eosio_assert( t.find( asset_id) != t.end(), "asset does not exist");
 
             //asset search
-            track_table tracker( _self, asset_id);
+            identity::track_table tracker( _self, asset_id);
 
             for( const auto& check : checks){
                auto idx = tracker.template get_index<N(bytuple)>();
                eosio_assert(check.type.size() <= 32, "not longer than 32 bytes");
-               auto itr = idx.lower_bound( trackrow::key(check.property, check, oracle)
+               auto itr = idx.lower_bound( identity::trackrow::key(check.property, check, oracle)
 
                   if(itr != idx.end() && itr->property == check.property && itr->check == check && itr->oracle == oracle){
                      idx.modify(itr, 0, [&] (trackrow& row){
                         row.type = check.type;
                         row.data = check.data;
                      });
-                  } else{
+                  } 
+                  else{
                      auto pk = tracker.available_primary_key();
                      tracker.emplace(_self, [&](trackrow& row){
                         row.id = pk;
