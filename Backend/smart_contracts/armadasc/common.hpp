@@ -52,7 +52,7 @@ namespace identity {
       std::string         type;
       std::vector<char>   data;
       uint64_t primary_key() const { return id; }
-      static eosio::key256 key(uint64_t property, uint64_t oracle) {
+      static eosio::key256 key(uint64_t property, uint64_t check, uint64_t oracle) {
          return eosio::key256::make_from_word_sequence<uint64_t>(property, check, oracle);
       }
       eosio::key256 get_key() const { return key(property, check, oracle); }
