@@ -21,10 +21,13 @@ var getLatestData = function(next) {
     if (!_.isMatch(oldData, newData)) {
       vueProducts.orders = newData;
       oldData = newData;
+
+      var newPage = result.data[0].lastState;
+      alert("new page: " + newPage);
     }
   });
 }
 
 setInterval(function() {
   getLatestData();
-}, 1000);
+}, 500);
