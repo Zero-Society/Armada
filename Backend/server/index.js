@@ -74,7 +74,7 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
   var checkpoint = req.params.checkpointId;
   var found = false;
 
-  var number = checkpointId;
+  var number = checkpoint;
   console.log("new number: " + number);
 
   return;
