@@ -12,7 +12,7 @@ var appkey = 'appkey';
 //var client = new RTM(endpoint, appkey);
 var utils = require('./utils');
 var products = require('./products');
-var orders = {};
+var orders = [];
 
 // Cross-site requests to allow communication w frontend
 app.use(function(req, res, next) {
@@ -20,6 +20,22 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+
+/*
+Go through an order path, and if the checkpointId is found, set verified true. Return new path.
+*/
+var markCheckpoint = function(path, checkpointId) {
+  console.log("In path " + JSON.stringify(path) + " mark " + checkpointId);
+  path.forEach(function(part, index, array) {
+    // Check the checkpointId
+    if (array[index].id == checkpointId) {
+      array[index].verified = true;
+    }
+  });
+  console.log("return " + JSON.stringify(path));
+  return path;
+}
 
 // Get a list of all orders
 app.get('/orders', function(req, res) {
@@ -36,30 +52,32 @@ app.get('/order/:productId', function(req, res) {
 
   orders.push({
     orderId: _orderId,
-    productId: _itemId,
+    productId: _productId,
     path: _path
   });
 
-  res.send(orders);
+  res.send({orderId: _orderId});
 });
 
 // Scan order at checkpoint, used by android app
 // OrderID is derived from QR code.
 // CheckpointID is derived from scanning device.
 app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
-  var _order = req.params.checkpointId;
-  var checkpoint = req.params.orderId;
+  var _order = req.params.orderId;
+  var checkpoint = req.params.checkpointId;
   var found = false;
+
+  console.log("order: " + _order + " checkpoint:" + checkpoint);
+  console.log(JSON.stringify(orders))
 
   // Identify the matching order id if it exists, and add the checkpoint
   orders.forEach(function(part, index, array) {
-    if (array[index].id == _order) {
+    if (array[index].orderId == _order) {
       found = true;
       console.log("Found product: " + array[index]);
-      array[index].checkpoints.push(_checkpoint);
-
+      
       // Also scan through the product path, and mark checkpoint as verified
-      array[index].path = markCheckpoint(array[index].path, _checkpoint);
+      array[index].path = markCheckpoint(array[index].path, checkpoint);
     }
   });
 
