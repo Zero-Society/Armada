@@ -21,6 +21,9 @@ var getLatestData = function(next) {
   axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 
     var newPage = result.data[0].lastState;
+
+    console.log("CURRENTPAGE " + currentPage + ", NEWPAGE " + newPage);
+
     if (currentPage != newPage) {
       alert("new page: " + newPage);
       currentPage = newPage;
