@@ -1,21 +1,5 @@
 
 
-// choose, pay, wrap, ship
-
-$('.choose').click(function(){
-  choose(0);
-});
-$('.pay').click(function(){
-  choose(1);
-});
-$('.wrap').click(function(){
-  choose(2);
-});
-$('.ship').click(function(){
-  choose(3);
-});
-
-
 var choose = function(page) {
   if (page == 0) {
     $(".choose").addClass("active");
@@ -31,12 +15,10 @@ var choose = function(page) {
     $("#line").removeClass("three");
     $("#line").removeClass("four");
 
-      $("#first").addClass("active");
-  $("#second").removeClass("active");
-  $("#third").removeClass("active");
-  $("#fourth").removeClass("active");
-
-
+     $("#first").addClass("active");
+    $("#second").removeClass("active");
+    $("#third").removeClass("active");
+    $("#fourth").removeClass("active")
   } else if (page == 1) {
      $(".pay").addClass("active");
     $(".pay > .icon").addClass("active");
@@ -51,11 +33,10 @@ var choose = function(page) {
     $("#line").removeClass("three");
     $("#line").removeClass("four");
 
-      $("#first").removeClass("active");
+    $("#first").removeClass("active");
   $("#second").addClass("active");
   $("#third").removeClass("active");
   $("#fourth").removeClass("active");
-
   } else if (page == 2) {
      $(".wrap").addClass("active");
     $(".wrap > .icon").addClass("active");
@@ -74,8 +55,6 @@ var choose = function(page) {
   $("#second").removeClass("active");
   $("#third").addClass("active");
   $("#fourth").removeClass("active");
-
-
   } else if (page == 3) {
      $(".ship").addClass("active");
     $(".ship > .icon").addClass("active");
@@ -98,70 +77,62 @@ var choose = function(page) {
 }
 
 
+choose(2);
 
 
+/* Display for Information */
 
-
-
-
-
-
-
-
-
-
-//var oldData = {};
-
-var currentNumber = 0;
-
-var vueProducts = new Vue({
-  el: '#orders-parent',
-  data: {
-    orders: []
-  }
+$(".choose").click(function() {
+  
 })
-/*
-axios.get("http://206.189.90.181:3000/orders").then(function (result) {
-  console.log(JSON.stringify(result.data));
 
-  vueProducts.orders = result.data;
-});
-*/
-var getLatestData = function(next) {
-  axios.get("http://206.189.90.181:3000/number").then(function (result) {
+$(".pay").click(function() {
+ 
+})
 
-    //console.log("/number result: " + JSON.stringify(result));
-   
-    var number = result.data.number;
-    console.log("current number: " + number);
-    if (currentNumber != number) {
-      console.log("NEW NUMBER: " + number);
-      choose(number);
-      currentNumber = number;
-    }
+$(".wrap").click(function() {
+ 
+})
 
-    /*var newPage = result.data[result.data.length - 1].lastState;
+$(".ship").click(function() {
+  $(".ship").addClass("active");
+  $(".ship > .icon").addClass("active");
+  $(".pay").removeClass("active");
+  $(".wrap").removeClass("active");
+  $(".choose").removeClass("active");
+  $(".pay > .icon").removeClass("active");
+  $(".wrap > .icon").removeClass("active");
+  $(".choose > .icon").removeClass("active");
+  $("#line").addClass("four");
+  $("#line").removeClass("two");
+  $("#line").removeClass("three");
+  $("#line").removeClass("one");
+})
 
-    console.log("CURRENTPAGE " + currentPage + ", NEWPAGE " + newPage);
+$(".choose").click(function() {
+  $("#first").addClass("active");
+  $("#second").removeClass("active");
+  $("#third").removeClass("active");
+  $("#fourth").removeClass("active");
+})
 
-    if (currentPage != newPage) {
-      console.log("RUN ANIMATION ");
-      //alert("new page: " + newPage);
-      currentPage = newPage;
-      choose(newPage);
-    } 
+$(".pay").click(function() {
+  $("#first").removeClass("active");
+  $("#second").addClass("active");
+  $("#third").removeClass("active");
+  $("#fourth").removeClass("active");
+})
 
-    /*var newData = result.data;
-    if (!_.isMatch(oldData, newData)) {
-      vueProducts.orders = newData;
-      oldData = newData;
+$(".wrap").click(function() {
+  $("#first").removeClass("active");
+  $("#second").removeClass("active");
+  $("#third").addClass("active");
+  $("#fourth").removeClass("active");
+})
 
-      var newPage = result.data[0].lastState;
-      alert("new page: " + newPage);
-    }*/
-  });
-}
-
-setInterval(function() {
-  getLatestData();
-}, 1000);
+$(".ship").click(function() {
+  $("#first").removeClass("active");
+  $("#second").removeClass("active");
+  $("#third").removeClass("active");
+  $("#fourth").addClass("active");
+})

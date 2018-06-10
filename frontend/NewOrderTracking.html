@@ -91,42 +91,6 @@
 <!--=====  =====-->
 
 
-<div>
-  <h2>Your active orders</h2>
-
-  <table class="table" id="orders-parent">
-    <thead>
-      <tr>
-        <th scope="col">Order id</th>
-        <th scope="col">Product id</th>
-        <th scope="col">Tracking</th>
-      </tr>
-    </thead>
-
-    <!-- iterate over all orders -->
-    <tr v-for="order in orders">
-      <td>{{ order.orderId }}</td>
-      <td>{{ order.productId }}</td>
-      <td>
-        <!-- tracking progress bar -->
-        <ol class="wizard-progress clearfix">
-            <div>
-            <!-- Iterate over a single order's checkpoints -->
-            <li  v-for="checkpoint in order.path"
-                v-bind:class="{activestep: checkpoint.verified}">
-              <span class="step-name">
-                {{ checkpoint.name }}
-              </span>
-              <span class="visuallyhidden">Step </span><span class="step-num">{{ checkpoint.id }}</span>
-            </li>
-            </div>
-        </ol>
-        <!-- tracking progress bar -->
-      </td>
-    </tr>
-  </table>
-
-  </div>
 
   <div id="info-wrapper">
   <div id="left-side">
@@ -149,7 +113,7 @@
             </g>
           </svg>
         </div>
-        Logistics
+        Shipped
       </li>
       <li class="wrap">
         <div class="icon">
@@ -159,7 +123,7 @@
             </g>
           </svg>
         </div>
-        Customer
+        Logistics
       </li>
       <li class="ship">
         <div class="icon">
@@ -169,7 +133,7 @@
             </g>
           </svg>
         </div>
-        Shipped
+        Completed
       </li>
     </ul>
   </div>
@@ -189,9 +153,9 @@
       </div>
 
       <h1>Manufacturer</h1>
-      <h3>Status: </h3>
-      <h3>Order ID: </h3>
-      <h3>Item ID: </h3>
+      <h3>Status: In inventory</h3>
+      <h3>Order ID: 23</h3>
+      <h3>Item ID: 6</h3>
 
       <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor.</p> -->
     </div>
@@ -204,10 +168,10 @@
         </svg>
       </div>
 
-      <h1>Logistics Company</h1>
-      <h3>Status: </h3>
-      <h3>Order ID: </h3>
-      <h3>Item ID: </h3>
+      <h1>Shipped</h1>
+      <h3>Status: Kowloon bay</h3>
+      <h3>Order ID: 23</h3>
+      <h3>Item ID: 6</h3>
 
       <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p> -->
     </div>
@@ -220,10 +184,10 @@
         </svg>
       </div>
 
-      <h1>Customer</h1>
-      <h3>Status: </h3>
-      <h3>Order ID: </h3>
-      <h3>Item ID: </h3>
+      <h1>Logistics</h1>
+      <h3>Status: San Francisco, Bay Area</h3>
+      <h3>Order ID: 23</h3>
+      <h3>Item ID: 6</h3>
 
       <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p> -->
 
@@ -239,7 +203,7 @@
 
       <h1>Completed Shipment</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>
+      <p>Customer has acknowledgement receipt of the order! Thanks for using Armada!</p>
 
     </div>
   </div>
@@ -249,6 +213,8 @@
 <script src="js/libs/jquery.js"></script>
 <script src="js/libs/axios.min.js"></script>
 <script src="js/libs/vue.js"></script>
+<script src="js/OrderAnimation.js"></script>
+<script src="js/libs/underscore.js"></script>
 <script src="js/Orders.js"></script>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
