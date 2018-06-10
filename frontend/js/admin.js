@@ -10,7 +10,6 @@ $("#orderProduct").click(function() {
   axios.get("http://206.189.90.181:3000/order/" + _productId).then(function(resp) {
     console.log(JSON.stringify(resp));
     console.log(JSON.stringify(resp.data));
-    alert(resp.data.orderId);
      qr.value = "" + resp.data.orderId;
   });
 

@@ -14,6 +14,11 @@ var choose = function(page) {
     $("#line").removeClass("two");
     $("#line").removeClass("three");
     $("#line").removeClass("four");
+
+     $("#first").addClass("active");
+    $("#second").removeClass("active");
+    $("#third").removeClass("active");
+    $("#fourth").removeClass("active")
   } else if (page == 1) {
      $(".pay").addClass("active");
     $(".pay > .icon").addClass("active");
@@ -27,6 +32,11 @@ var choose = function(page) {
     $("#line").removeClass("one");
     $("#line").removeClass("three");
     $("#line").removeClass("four");
+
+    $("#first").removeClass("active");
+  $("#second").addClass("active");
+  $("#third").removeClass("active");
+  $("#fourth").removeClass("active");
   } else if (page == 2) {
      $(".wrap").addClass("active");
     $(".wrap > .icon").addClass("active");
@@ -40,6 +50,11 @@ var choose = function(page) {
     $("#line").removeClass("two");
     $("#line").removeClass("one");
     $("#line").removeClass("four");
+
+      $("#first").removeClass("active");
+  $("#second").removeClass("active");
+  $("#third").addClass("active");
+  $("#fourth").removeClass("active");
   } else if (page == 3) {
      $(".ship").addClass("active");
     $(".ship > .icon").addClass("active");
@@ -53,6 +68,11 @@ var choose = function(page) {
     $("#line").removeClass("two");
     $("#line").removeClass("three");
     $("#line").removeClass("one");
+
+     $("#first").removeClass("active");
+  $("#second").removeClass("active");
+  $("#third").removeClass("active");
+  $("#fourth").addClass("active");
   }
 }
 
