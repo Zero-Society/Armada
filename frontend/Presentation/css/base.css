@@ -24,7 +24,7 @@ body {
 
 .demo-4 {
 	--color-text: #000;
-	--color-bg: #F8FFFE;
+	--color-bg: #FFFFFF;
 	--color-link: #000;
 	--color-link-hover: #74c3d0;
 	--color-stitle: #000;
@@ -257,13 +257,13 @@ a.demo--current {
 }
 
 .slide__img {
-	position: absolute;
-	top: -200px;
-	left: -200px;
-	width: calc(100% + 400px);
-	height: calc(100% + 400px);
-	background-size: cover;
-	background-position: 50% 50%;
+	display: grid;
+	height: 100%;
+}
+.imgfit{
+	max-width: 100%;
+	max-height: 100vh;
+	margin: auto;
 }
 
 .slidenav {
