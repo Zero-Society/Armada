@@ -5,6 +5,8 @@ var qr = new QRious({
         value: ''
       });
 
+qr.value = 13;
+
 $("#orderProduct").click(function() {
   var _productId = $("#productId").val();
   axios.get("http://206.189.90.181:3000/order/" + _productId).then(function(resp) {
