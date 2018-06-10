@@ -105,9 +105,10 @@ axios.get("http://206.189.90.181:3000/orders").then(function (result) {
 var getLatestData = function(next) {
   axios.get("http://206.189.90.181:3000/number").then(function (result) {
 
-    console.log("/number result: " + JSON.stringify(result));
+    //console.log("/number result: " + JSON.stringify(result));
    
     var number = result.data.number;
+    console.log("current number: " + number);
     if (currentNumber != number) {
       console.log("NEW NUMBER: " + number);
       choose(number);
