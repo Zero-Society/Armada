@@ -23,39 +23,6 @@ app.use(function(req, res, next) {
 
 // Get a list of all orders
 app.get('/orders', function(req, res) {
-
-  /*var rows = eos.getTableRows();
-  var rowss = eos.getTableRows({
-    json: true,
-    code: "myaccount",
-    scope: "myaccount",
-    table: "orders"
-  }).then(function(res) {
-    console.log(JSON.stringify(res));
-  });
-  console.log(JSON.stringify(rowss));
-  res.send(rowss);*/
-
-  //res.send(eos.getBlock(2));
-  
-
-  // Return a fake order for testing
-  var fakeOrder = {
-    orderId: 56,
-    productId: 2,
-    path: utils.getPathForProduct(56, 2)
-  };
-
-  var fakeOrder2 = {
-    orderId: 28,
-    productId: 5,
-    path: utils.getPathForProduct(28, 5)
-  };
-
-  var orders = [];
-  orders.push(fakeOrder);
-  orders.push(fakeOrder2);
-
   res.send(orders);
 });
 
@@ -64,22 +31,43 @@ app.get('/orders', function(req, res) {
 app.get('/order/:productId', function(req, res) {
   var _productId = req.params.productId;
   var _orderId = utils.generateOrderId();
-  res.send({
-    productId: _productId,
-    orderId: _orderId
+  var _path = utils.getPathForProduct(_productId, _orderId)
+  
+
+  orders.push({
+    orderId: _orderId,
+    productId: _itemId,
+    path: _path
   });
+
+  res.send(orders);
 });
 
 // Scan order at checkpoint, used by android app
 // OrderID is derived from QR code.
 // CheckpointID is derived from scanning device.
 app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
-  var _checkpointId = req.params.checkpointId;
-  var _orderId = req.params.orderId;
-  res.send({
-    checkpointId: _checkpointId,
-    orderId: _orderId
+  var _order = req.params.checkpointId;
+  var checkpoint = req.params.orderId;
+  var found = false;
+
+  // Identify the matching order id if it exists, and add the checkpoint
+  orders.forEach(function(part, index, array) {
+    if (array[index].id == _order) {
+      found = true;
+      console.log("Found product: " + array[index]);
+      array[index].checkpoints.push(_checkpoint);
+
+      // Also scan through the product path, and mark checkpoint as verified
+      array[index].path = markCheckpoint(array[index].path, _checkpoint);
+    }
   });
+
+  if (!found) {
+    console.log("Order not found!!!");
+  }
+
+  res.send(orders)
 });
 
 //receive data from TP link IOT device.
