@@ -1,3 +1,59 @@
+mywallet
+PW5HwxJDTg3ZFdsSpXd1YpBuLvCe5BxgjRhH2w8LxZixrmifTZzZM
+
+
+eos/tutorials/bios-boot-tutorial  master ✗                                           14d ✖ ◒  ⍉
+▶ cleos create key
+Private key: 5Kh5SHeaPxdo3GnpitfSQbFr6SsN4RDUXaJ2j7jd7HFy1TD797h
+Public key: EOS57P2tKzbiHHKJsz6F3dokyPB4HU9ga7DCALpqgv5Uc58ipE9uB
+
+eos/tutorials/bios-boot-tutorial  master ✗                                            14d ✖ ◒  
+▶ cleos create key
+Private key: 5JG3KJz6fzZ5n45ghcPcKdMwT5z1Mye4MMdGhXVEHjqTyGN5mJ9
+Public key: EOS86HuB6mMrv5MEM3buqTBUKdBA5G55BKDH1LrU9FYbHXffoBuEw
+
+
+
+
+
+os/tutorials/bios-boot-tutorial  master ✗                                            14d ✖ ◒  
+▶ cleos create key       
+Private key: 5KeZ4rdF2PMYWr6ZAPfoMSxPuF9PT5cJdzZ4HMxVbg9hrGTzYna
+Public key: EOS7eYzF1ACnmWurbZCdPvV3G9AZLDkPyvL9Pq8msDddkk3dTMbuQ
+
+eos/tutorials/bios-boot-tutorial  master ✗                                            14d ✖ ◒  
+▶ cleos create key
+Private key: 5JCC29qakGsRtw2v8yTWJ4wuoroZpsjV6Z8iLssduLfQhygH59Q
+Public key: EOS5E9Phpd9K8FDM4V6wfk2FBFbzmwEYZEFovqfARdwJpC671itiL
+
+eos/tutorials/bios-boot-tutorial  master ✗     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 wallet password: PW5JhKS41haRMeJAc5oS4TKb9eHcxEBgjDNNUD7BktL5jWXq64q3n
 
 

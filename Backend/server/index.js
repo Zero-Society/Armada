@@ -1,15 +1,15 @@
 var express = require('express');
 var app = express();
-var EOS = require('eosjs');
-var eos = EOS({
-    httpEndpoint: 'http://localhost:8888'});
+//var EOS = require('eosjs');
+//var eos = EOS({
+ //   httpEndpoint: 'http://localhost:8888'});
 
 //satori stuff
-var RTM = require('satori');
+// var RTM = require('satori');
 var endpoint = 'endpoint';
 var appkey = 'appkey';
 
-var client = new RTM(endpoint, appkey);
+//var client = new RTM(endpoint, appkey);
 var utils = require('./utils');
 var products = require('./products');
 var orders = {};
@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
 // Get a list of all orders
 app.get('/orders', function(req, res) {
 
-  var rows = eos.getTableRows();
+  /*var rows = eos.getTableRows();
   var rowss = eos.getTableRows({
     json: true,
     code: "myaccount",
@@ -34,10 +34,10 @@ app.get('/orders', function(req, res) {
     console.log(JSON.stringify(res));
   });
   console.log(JSON.stringify(rowss));
-  res.send(rowss);
+  res.send(rowss);*/
 
   //res.send(eos.getBlock(2));
-  /*
+  
 
   // Return a fake order for testing
   var fakeOrder = {
@@ -56,7 +56,7 @@ app.get('/orders', function(req, res) {
   orders.push(fakeOrder);
   orders.push(fakeOrder2);
 
-  res.send(orders);*/
+  res.send(orders);
 });
 
 // Order a particular product.
@@ -83,7 +83,7 @@ app.get('/checkpoint/:checkpointId/scan/:orderId', function(req, res) {
 });
 
 //receive data from TP link IOT device.
-app.get('/receive', function(req, res)){ 
+/*app.get('/receive', function(req, res)){ 
   client.on('enter-connected', function () {
     console.log('Connected to Stream');
   });
@@ -94,7 +94,7 @@ app.get('/receive', function(req, res)){
 
   var channel = client.subscribe('TP Channel', RTM.SubscriptionMode.SIMPLE);
 
-  /* set callback for state transition */
+
   channel.on('enter-subscribed', function () {
     console.log('Subscribed to: ' + channel.subscriptionId);
   });
@@ -103,7 +103,7 @@ app.get('/receive', function(req, res)){
     console.log('Unsubscribed from: ' + channel.subscriptionId);
   });
 
-  /* set callback for PDU with specific action */
+
   channel.on('rtm/subscription/data', function (pdu) {
     pdu.body.messages.forEach(function (msg) {
       console.log('Received Signal from' + msg.who + ' : ' + JSON.stringify(msg));
@@ -120,6 +120,6 @@ app.get('/receive', function(req, res)){
         pdu.body.error + ': ' + pdu.body.reason);
   });
 }
-
-client.start(); // satori stream start
+*/
+// client.start(); // satori stream start
 app.listen(3000, () => console.log('listen port 3000'));
