@@ -29,6 +29,6 @@ $("#checkpoint").click(function() {
 
   //axios.get("http://localhost:3000/order/" + _productId + "/checkpoint/" + _checkpointId).then(function(resp) {
   axios.get("http://206.189.90.181:3000/checkpoint/" + _checkpointId + "/scan/" + _orderId).then(function(resp) {
-    alert(JSON.stringify(resp));
+
   });
 });
