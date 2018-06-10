@@ -87,7 +87,7 @@ var choose = function(page) {
 
 //var oldData = {};
 
-var currentPage = 0;
+var currentNumber = 0;
 
 var vueProducts = new Vue({
   el: '#orders-parent',
@@ -107,7 +107,12 @@ var getLatestData = function(next) {
 
     console.log("/number result: " + JSON.stringify(result));
    
-
+    var number = result.data.number;
+    if (currentNumber != number) {
+      console.log("NEW NUMBER: " + number);
+      choose(number);
+      currentNumber = number;
+    }
 
     /*var newPage = result.data[result.data.length - 1].lastState;
 
